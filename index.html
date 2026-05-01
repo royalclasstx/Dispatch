@@ -201,7 +201,7 @@ select:focus,input:focus{border-color:var(--black);background:var(--white)}
       </div>
       <div class="driver-card">
         <div class="av av-c">DG</div>
-        <div class="driver-info"><div class="driver-name">Doug</div><div class="driver-status st-avail">Available · Independent contractor</div></div>
+        <div class="driver-info"><div class="driver-name">Doug M.</div><div class="driver-status st-avail">Available · Independent contractor</div></div>
         <div class="driver-owed" id="owed-dg">$0.00</div>
       </div>
     </div>
@@ -213,14 +213,14 @@ select:focus,input:focus{border-color:var(--black);background:var(--white)}
         <option value="">Select driver...</option>
         <option value="mw">Melvin W.</option>
         <option value="kh">Kendrix H.</option>
-        <option value="dg">Doug</option>
+        <option value="dg">Doug M.</option>
       </select>
       <select id="payall-method" style="flex:1;min-width:140px">
         <option value="Cash">Cash</option>
         <option value="Cash App">Cash App</option>
         <option value="Zelle">Zelle</option>
-        <option value="Venmo">Venmo</option>
-        <option value="PayPal">PayPal</option>
+        
+        
       </select>
       <button class="btn btn-g" onclick="payAllDriver()">Pay all — mark paid</button>
     </div>
@@ -266,8 +266,8 @@ select:focus,input:focus{border-color:var(--black);background:var(--white)}
     <div class="slbl">Payment methods accepted</div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;padding:4px 0">
       <div style="font-size:13px;color:var(--g500);line-height:1.7">
-        Cash · Cash App · Zelle · Venmo · PayPal<br/>
-        <span style="font-size:11px">Select the method when confirming each payment. No bank account required for Cash App, Zelle, Venmo, or PayPal.</span>
+        Cash · Cash App · Zelle<br/>
+        <span style="font-size:11px">Select the method when confirming each payment. No bank account required for Cash App, or Zelle.</span>
       </div>
     </div>
   </div>
@@ -459,11 +459,11 @@ var currentJobId = null;
 var selectedMethod = 'Cash';
 var driverOwed = {mw:0, kh:0};
 
-var DRIVERS = ['Melvin W.','Kendrix H.','Doug'];
+var DRIVERS = ['Melvin W.','Kendrix H.','Doug M.'];
 var SERVICES = ['Weekend 4 Hour Rental','Weekend Full Day Rental','Pick Up / Drop Off','Hourly Rate Service','Weekend Sprinter 4hr','Weekend Sprinter Full Day'];
 var VEHICLES = ['Sprinter Van','SUV — Black','Sedan — Black','Limo'];
 var AV_CLASSES = {'Melvin W.':'av-a','Kendrix H.':'av-b'};
-var DRIVER_KEYS = {'Melvin W.':'mw','Kendrix H.':'kh','Doug':'dg'};
+var DRIVER_KEYS = {'Melvin W.':'mw','Kendrix H.':'kh','Doug M.':'dg'};
 
 function pad(n){return n<10?'0'+n:n}
 function toMin(t){if(!t)return 0;var p=t.split(':');return parseInt(p[0])*60+parseInt(p[1])}
@@ -636,7 +636,7 @@ function openReceipt(id){
 
   // Build payment method selector inside receipt
   var methodHtml = '<div class="pay-method-row" id="method-selector">';
-  ['Cash','Cash App','Zelle','Venmo','PayPal'].forEach(function(m){
+  ['Cash','Cash App','Zelle'].forEach(function(m){
     methodHtml += '<button class="pm-btn'+(m==='Cash'?' sel':'')+'" onclick="selMethod(this,\''+m+'\')">'+m+'</button>';
   });
   methodHtml += '</div>';
@@ -655,7 +655,7 @@ function selMethod(btn, method){
   document.getElementById('r-method').innerHTML = document.getElementById('r-method').innerHTML;
   // rebuild
   var methodHtml = '<div class="pay-method-row" id="method-selector">';
-  ['Cash','Cash App','Zelle','Venmo','PayPal'].forEach(function(m){
+  ['Cash','Cash App','Zelle'].forEach(function(m){
     methodHtml += '<button class="pm-btn'+(m===method?' sel':'')+'" onclick="selMethod(this,\''+m+'\')">'+m+'</button>';
   });
   methodHtml += '</div>';
